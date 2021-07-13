@@ -11,14 +11,16 @@ function StylesContextProvider (props) {
         transition: '0.2s',
         cursor: 'pointer',
         width: '150px',
-        border: '2px solid red',
+        borderWidth: '2px',
+        borderStyle: 'solid',
+        borderColor: '#FF0000',
         borderRadius: '7px',
-        backgroundColor: 'transparent',
+        backgroundColor: '#00000000',
         padding: '30px',
       },
       hovered: {
-        backgroundColor: 'black',
-        color: 'white'
+        backgroundColor: '#000',
+        color: '#FFF'
       }
     }
   });
