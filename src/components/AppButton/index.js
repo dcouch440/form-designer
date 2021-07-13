@@ -1,13 +1,15 @@
-import React from 'react'
+import useAppStyles from '../../hooks/useAppStyles';
 
-import {
-  StyledButton
-} from './styles';
+export default function AppButton ({ onClick, text }) {
+  const { styles, ref } = useAppStyles({ element: 'button' })
 
-export default function AppButton ({ onClick, text, backgroundColor }) {
   return (
-    <StyledButton backgroundColor={backgroundColor} onClick={onClick}>
+    <button
+      ref={ref}
+      style={styles}
+      onClick={onClick}
+    >
       {text}
-    </StyledButton>
+    </button>
   );
 }
