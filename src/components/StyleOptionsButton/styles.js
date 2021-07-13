@@ -13,8 +13,8 @@ export const SelectionButton = styled.button`
   grid-column: ${({span}) => span ? 'span ' + span : null};
   background-color: ${({isActive}) => isActive ? '#00bcd4' : '#9e9e9e'};
   color: ${({isActive}) => isActive ? 'white' : 'black'};
-  font-weight: 600;
-  font-size: ${({isActive}) => isActive ? '18px' : '15px'};
+  font-weight: 500;
+  font-size: ${({isActive}) => isActive ? '16px' : '15px'};
   font-family: sans-serif;
   border-radius: 7px;
   box-shadow: inset 0px 0px 4px 3px black;
