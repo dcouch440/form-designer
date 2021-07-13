@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { StylesContext } from '../../StylesContext'
 import useHover from '../useHover';
 
-export default function useAppStyles ({ element, styleType }) {
+export default function useAppStyles ({ element, elementStyleVersion }) {
   const [ref, isHovered] = useHover();
   const { appStyles, setAppStyles } = useContext(StylesContext);
 
@@ -16,19 +16,23 @@ export default function useAppStyles ({ element, styleType }) {
     appStyles[element]['nonHovered']
 
   const updateStyle = ({ name, value }) => {
-    setAppStyles(prev => ({
-      ...prev,
-      [element]: {
-        ...element,
-        [[element][styleType]]: {
-          ...[element][styleType],
-          [name]: value
+
+    setAppStyles(prev => {
+      return {
+        ...prev,
+        [element]: {
+          ...prev[element],
+          [elementStyleVersion]: {
+            ...prev[element][elementStyleVersion],
+            [name]: value
+          }
         }
       }
-    }));
+    })
   }
 
   return {
+    appStyles,
     styles,
     ref,
     updateStyle
