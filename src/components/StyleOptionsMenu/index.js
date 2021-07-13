@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import useAppStyles from '../../hooks/useAppStyles';
 import StyleOptionsButton from '../StyleOptionsButton';
+import StyleOptionsColorPicker from '../StyleOptionsColorPicker';
+import StyleOptionsCurrentColors from '../StyleOptionsCurrentColors';
 
 import {
   OptionContainer
@@ -8,8 +10,10 @@ import {
 
 export default function AppStyleOptions () {
   const [element, setElement] = useState('button');
-  const [styleType, setStyleType] = useState('nonHovered');
-  const { updateStyle } = useAppStyles({ element, styleType });
+  const [elementStyleVersion, setElementStyleVersion] = useState('nonHovered');
+  const [elementAttribute, setElementAttribute] = useState('backgroundColor');
+  const { appStyles, updateStyle } = useAppStyles({ element, elementStyleVersion });
+
 
   const elements = [
     {
@@ -34,9 +38,28 @@ export default function AppStyleOptions () {
     }
   ];
 
+  const elementAttributeButtons = [
+    {
+      set: 'backgroundColor',
+      buttonText: 'Background Color'
+    },
+    {
+      set: 'borderColor',
+      buttonText: 'Border Color'
+    }
+  ];
+
+  const handleSelectColor = color => {
+    updateStyle({
+      name: elementAttribute,
+      value: color
+    })
+  }
+
   return (
 
     <OptionContainer>
+
       <StyleOptionsButton
         activeButton={element}
         elementTypes={elements}
@@ -44,10 +67,21 @@ export default function AppStyleOptions () {
       />
 
       <StyleOptionsButton
-        activeButton={styleType}
+        activeButton={elementStyleVersion}
         elementTypes={styleOptions}
-        onClick={setStyleType}
+        onClick={setElementStyleVersion}
         span={2}
+      />
+
+      <StyleOptionsButton
+        activeButton={elementAttribute}
+        elementTypes={elementAttributeButtons}
+        onClick={setElementAttribute}
+      />
+
+      <StyleOptionsColorPicker
+        selectColor={handleSelectColor}
+        appStyles={appStyles}
       />
 
     </OptionContainer>
