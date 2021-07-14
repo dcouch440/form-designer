@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from 'react';
-import { TextInput } from './styles';
+import useAppStyles from "../../hooks/useAppStyles";
 
 import {
   OptionalButton
@@ -20,14 +20,22 @@ export default function AppTextInput ({
   buttonText,
   ...props
 }) {
+  const { styles, ref } = useAppStyles({ element: 'input' });
+
   return (
-    <div>
+    <div
+      style={{
+        color: styles.color
+      }}
+    >
       { title && <h3>{ title }</h3> }
       <label>
         { label }
-        <TextInput
+        <input
           autoComplete={autoComplete}
+          ref={ref}
           name={name}
+          style={styles}
           placeholder={placeholder}
           type={type}
           value={value}

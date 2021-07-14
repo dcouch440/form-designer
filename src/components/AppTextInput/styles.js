@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import colors from '../../config/colors';
+import colors from '../../colors';
 
 export const TextInput = styled.input`
   padding: 5px;
