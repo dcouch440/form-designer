@@ -20,12 +20,17 @@ export default function SidebarListItem ({ name, text, key }) {
   }))
 
   return (
-    <div ref={dragPreview} key={key} style={{ opacity: isDragging ? 0.5 : 1, padding: '30px'}}>
+    <ListItem 
+      ref={dragPreview}
+      key={key}
+      isDragging={isDragging}
+      style={{ opacity: isDragging ? 0.5 : 1, padding: '30px' }}
+    >
         {/* The drag ref marks this node as being the "pick-up" node */}
         <div ref={drag}>
           { text }
         </div>
-    </div>
+    </ListItem>
   )
   
 }
