@@ -1,5 +1,4 @@
-import React, { useCallback } from 'react'
-import useHover from '../../hooks/useHover';
+import { useCallback } from 'react';
 import StyleOptionsCurrentColorsBlock from '../StyleOptionsCurrentColorsBlock';
 
 import {
@@ -22,7 +21,7 @@ export default function StyleOptionsCurrentColors ({ appStyles, onClick }) {
       )
       .flat(Infinity)
       .filter(x => x !== undefined)))
-    ]
+    ];
   }, [appStyles])();
 
   const mappedColors = colors.map((color, index) => (
@@ -31,10 +30,10 @@ export default function StyleOptionsCurrentColors ({ appStyles, onClick }) {
       key={index}
       color={color}
     />
-  ))
+  ));
   return (
     <ColorBlockContainer>
       { mappedColors }
     </ColorBlockContainer>
-  )
+  );
 }

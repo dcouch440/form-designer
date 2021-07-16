@@ -1,4 +1,5 @@
 import useHover from '../../hooks/useHover';
+
 import {
   ColorBlock,
   DropWindow
@@ -22,5 +23,5 @@ export default function StyleOptionsCurrentColorsBlock ({ color, key, onClick })
           </DropWindow>
       }
     </div>
-  )
+  );
 }
