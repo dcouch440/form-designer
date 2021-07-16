@@ -1,13 +1,14 @@
-import React from 'react'
 import SidebarListItems from '../SidebarListItems';
 
 import {
-  SidebarContainer
+  SidebarContainer,
+  SidebarHeader
 } from './styles';
 
 export default function Sidebar () {
   return (
     <SidebarContainer>
+      <SidebarHeader>Drag Your Selection</SidebarHeader>
       <SidebarListItems />
     </SidebarContainer>
   );
