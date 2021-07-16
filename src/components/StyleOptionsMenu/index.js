@@ -1,89 +1,65 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 import useAppStyles from '../../hooks/useAppStyles';
 import StyleOptionsButton from '../StyleOptionsButton';
 import StyleOptionsColorPicker from '../StyleOptionsColorPicker';
-import StyleOptionsCurrentColors from '../StyleOptionsCurrentColors';
 
 import {
-  OptionContainer
+  elementsButtons,
+  styleEffectButtons,
+  elementAttributeButtons
+} from './options';
+
+import {
+  OptionContainer,
+  MenuHeader
 } from './styles';
 
-export default function AppStyleOptions () {
-  const [element, setElement] = useState('button');
+export default function StyleOptionsMenu () {
+  const [element, setElement] = useState('input');
   const [elementStyleVersion, setElementStyleVersion] = useState('nonHovered');
   const [elementAttribute, setElementAttribute] = useState('backgroundColor');
   const { appStyles, updateStyle } = useAppStyles({ element, elementStyleVersion });
-
-
-  const elements = [
-    {
-      set: 'button',
-      buttonText: 'Buttons'
-    },
-    {
-      set: 'multipleChoice',
-      buttonText: 'Multiple Choice'
-    },
-
-  ];
-
-  const styleOptions = [
-    {
-      set: 'nonHovered',
-      buttonText: 'Default'
-    },
-    {
-      set: 'hovered',
-      buttonText: 'Hovered'
-    }
-  ];
-
-  const elementAttributeButtons = [
-    {
-      set: 'backgroundColor',
-      buttonText: 'Background Color'
-    },
-    {
-      set: 'borderColor',
-      buttonText: 'Border Color'
-    }
-  ];
 
   const handleSelectColor = color => {
     updateStyle({
       name: elementAttribute,
       value: color
-    })
-  }
+    });
+  };
 
   return (
-
     <OptionContainer>
-
+      <MenuHeader>Color</MenuHeader>
       <StyleOptionsButton
+        activeElement={element}
         activeButton={element}
-        elementTypes={elements}
+        elementTypes={elementsButtons}
         onClick={setElement}
       />
-
+      <MenuHeader>Color For</MenuHeader>
       <StyleOptionsButton
+        activeElement={element}
         activeButton={elementStyleVersion}
-        elementTypes={styleOptions}
+        elementTypes={styleEffectButtons(element)}
         onClick={setElementStyleVersion}
         span={2}
       />
-
+      <MenuHeader>Color The</MenuHeader>
       <StyleOptionsButton
+        activeElement={element}
         activeButton={elementAttribute}
-        elementTypes={elementAttributeButtons}
+        elementTypes={elementAttributeButtons(element)}
         onClick={setElementAttribute}
+        slim={true}
+        columns={3}
       />
-
+      <MenuHeader>Your Colors</MenuHeader>
       <StyleOptionsColorPicker
+        buttonValues={elementAttributeButtons(element)}
+        selectedButton={elementAttribute}
         selectColor={handleSelectColor}
         appStyles={appStyles}
       />
-
     </OptionContainer>
-  )
+  );
 }
