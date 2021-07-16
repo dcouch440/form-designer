@@ -38,18 +38,15 @@ export default function Form () {
     setCurrentItem('');
   };
 
-  const showComponents = () => {
-    return (
-      inputs.map(({ Component, props, id }, key) => (
-        <Component
-          title={props.title}
-          key={key}
-          id={id}
-          optionsArray={props.optionsArray}
-        />
-      ))
-    );
-  };
+  const showComponents = inputs
+    .map(({ Component, props, id }, key) => (
+      <Component
+        title={props.title}
+        key={key}
+        id={id}
+        options={props.options}
+      />
+    ));
 
   return (
     <FormContainer
@@ -57,7 +54,7 @@ export default function Form () {
       ref={drop}
       role={'Dustbin'}
     >
-      { showComponents() }
+      { showComponents }
       {
         modal &&
           <FormModal
