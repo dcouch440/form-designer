@@ -1,6 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 
-
 const GlobalStyles = createGlobalStyle`
 	* {
     box-sizing: border-box;
@@ -12,10 +11,13 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
 	}
   #root {
-    position: relative;
     display: flex;
+    align-items: center;
     height: inherit;
     width: inherit;
+    > * {
+      height: 100%;
+    }
   }
 `;
 
