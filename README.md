@@ -14,9 +14,9 @@
 
 `Custom Hooks`
 
-- useAppStyles
+- `useAppStyles`
     - This hook is used to reduce styles and seamlessly change them from the same function
-- useInput
+- `useInput`
     - This hook is used to generate a component based on the users chosen attributes. This hook also generates the snapshot in context for rendering from a user perspective. It does both using the same process.
 
 `File Structure`
