@@ -5,24 +5,24 @@ import {
 } from './styles';
 
 export default function FormModalMultipleChoiceOptions ({
-  optionsArrayInput,
-  setOptionsArray,
-  setOptionsArrayInput,
-  optionsArray,
+  optionsInput,
+  setOptions,
+  setOptionsInput,
+  options,
   mainInputTitle,
   handleTitleChange
 }) {
 
   const handleAddChoice = () => {
-    setOptionsArray(prev => [...(new Set([...prev, optionsArrayInput]))]);
-    setOptionsArrayInput('');
+    setOptions(prev => [...(new Set([...prev, optionsInput]))]);
+    setOptionsInput('');
   };
   const handleRemoveChoice = option => {
-    setOptionsArray(optionsArray.filter(o => option !== o));
+    setOptions(options.filter(o => option !== o));
   };
   const handleOptionInputChange = e => {
     const { value } = e.target;
-    setOptionsArrayInput(value);
+    setOptionsInput(value);
   };
 
   return <>
@@ -39,11 +39,11 @@ export default function FormModalMultipleChoiceOptions ({
     <input
       name='options'
       onChange={handleOptionInputChange}
-      value={optionsArrayInput}
+      value={optionsInput}
     />
     <AddButton onClick={handleAddChoice}>Add</AddButton>
     {
-      optionsArray.map(option => (
+      options.map(option => (
         <OptionsListItem>
           { option }
           <RemoveButton onClick={() => handleRemoveChoice(option)}>X</RemoveButton>
