@@ -5,12 +5,10 @@ import {
   DropWindow
 } from './styles';
 
-export default function StyleOptionsCurrentColorsBlock ({ color, key, onClick }) {
+export default function StyleOptionsCurrentColorsBlock ({ color, onClick }) {
   const [ref, isHovered] = useHover();
   return (
-    <div
-      key={key}
-    >
+    <div>
       <ColorBlock
         ref={ref}
         backgroundColor={color}
