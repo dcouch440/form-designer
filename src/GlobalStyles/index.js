@@ -12,12 +12,8 @@ const GlobalStyles = createGlobalStyle`
 	}
   #root {
     display: flex;
-    align-items: center;
     height: inherit;
     width: inherit;
-    > * {
-      height: 100%;
-    }
   }
 `;
 
