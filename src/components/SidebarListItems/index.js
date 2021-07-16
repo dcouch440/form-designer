@@ -7,9 +7,9 @@ export default function SidebarListItems () {
   ];
 
   return (
-    listItems.map(([name, text], key) => (
+    listItems.map(([name, text], index) => (
       <SidebarListItem
-        key={key}
+        key={index}
         name={name}
         text={text}
       />

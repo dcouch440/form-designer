@@ -4,11 +4,11 @@ import {
   ListItem
 } from './styles';
 
-export default function SidebarListItem ({ name, text, key }) {
+export default function SidebarListItem ({ name, text, ket }) {
   const [{ isDragging }, drag, dragRef] = useDrag(() => ({
     type: 'BOX',
     item: {
-      name, key
+      name
     },
     collect: monitor => ({
       isDragging: monitor.isDragging(),
@@ -18,7 +18,7 @@ export default function SidebarListItem ({ name, text, key }) {
   return (
     <ListItem
       ref={dragRef}
-      key={key}
+      key={ket}
       isDragging={isDragging}
       style={{ opacity: isDragging ? 0.5 : 1, padding: '30px' }}
     >

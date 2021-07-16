@@ -11,11 +11,12 @@ export const ListItem = styled.div`
   color: white;
   font-weight: 900;
   font-family: Arial, Helvetica, sans-serif;
-  box-shadow: 0 0 3px black;
+  box-shadow: inset 0px 0px 4px 3px black;
   border: 2px solid black;
   opacity: ${({ isDragging })=> isDragging ? 0.5 : 1};
   :hover {
-    background-color: black;
     color: white;
+    background-color: black;
+    box-shadow: inset 0px 0px 2px white, 0px 0px 2px white;
   }
 `;
