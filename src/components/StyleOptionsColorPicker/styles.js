@@ -9,7 +9,14 @@ export const ButtonContainer = styled.div`
 
 export const SelectButton = styled.button`
   border: 2px solid black;
+  cursor: pointer;
+  transition: 0.2s;
   z-index: 345;
   width: 120px;
   height: 60px;
+  border-radius: 7px;
+  :hover {
+    background-color: black;
+    color: white;
+  }
 `;
