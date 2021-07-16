@@ -43,8 +43,10 @@ export default function FormModalMultipleChoiceOptions ({
     />
     <AddButton onClick={handleAddChoice}>Add</AddButton>
     {
-      options.map(option => (
-        <OptionsListItem>
+      options.map((option, index) => (
+        <OptionsListItem
+          key={index}
+        >
           { option }
           <RemoveButton onClick={() => handleRemoveChoice(option)}>X</RemoveButton>
         </OptionsListItem>
