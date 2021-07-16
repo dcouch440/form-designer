@@ -1,117 +1,85 @@
-import React, { useState } from 'react'
+import { useContext, useState } from 'react';
+import { Context } from '../../Context';
+import useAppStyles from '../../hooks/useAppStyles';
 
 import {
-  CheckboxContainer,
-  CheckboxList
+  CheckboxList,
+  CheckboxContainer
 } from './styles';
 
-// SEE INTEREST IN PAGES
-
 export default function MultipleChoice ({
-  obj,
-  category,
-  onChange,
-  optionsLabelsArray,
-  title,
-  selectAllOption,
-  otherOption,
-  renderAdditional
+  id,
+  options,
+  title
 }) {
+  const { formData, handleUpdateFormData } = useContext(Context);
   const [selectAll, setSelectAll] = useState(false);
+  const { styles } = useAppStyles({ element: 'multipleChoice' });
+  const currentData = formData[id];
 
-  const handleSelectAll = () => {
-    const changeAll = ({ bool }) => {
-      const objectConvertedToTrueArray = Object
-        .keys(obj[category]).map(
-          key => ({[key]: bool})
-        );
-      return Object.assign(
-        {},
-        ...objectConvertedToTrueArray,
-      );
-    }
+  const handleReduceData = newData => {
+    handleUpdateFormData({
+      name: id,
+      value: {
+        ...currentData,
+        data: newData
+      }
+    });
+  };
 
-    if (selectAll === false) {
-      setSelectAll(true)
-      onChange({
-        target: {
-          name: category,
-          value: changeAll({ bool: true })
-        }
-      });
-    } else {
-      setSelectAll(false)
-      onChange({
-        target: {
-          name: category,
-          value: changeAll({ bool: false })
-        }
-      });
-    }
-  }
-
-  const handleCheckboxChange = e => {
-    if (e.target.type === 'checkbox') {
-      const { name, checked } = e.target;
-      const newData = {
-        ...obj[category],
-        [name]: checked
-      };
-      onChange({
-        target: {
-          name: category,
-          value: newData
-        }
-      });
-    } else if (e.target.type === 'input') {
-      const { name, value } = e.target;
-      const newData = {
-        ...obj[category],
-        [name]: value
-      };
-      onChange({
-        target: {
-          name: category,
-          value: newData
-        }
-      });
+  const handleChange = e => {
+    const { name, checked } = e.target;
+    const newData = [...currentData.data];
+    if (checked) {
+      newData.push(name);
+      handleReduceData(newData);
+    } else if (!checked) {
+      handleReduceData(newData.filter(n => n !== name));
     }
   };
 
-  const options = optionsLabelsArray.map(([option, label], i) => {
+  const handleSelectAll = () => {
+    if (!selectAll) {
+      setSelectAll(true);
+      handleReduceData([...options]);
+    } else if (selectAll) {
+      setSelectAll(false);
+      handleReduceData([]);
+    }
+  };
+
+  const optionsArray = options.map((label, i) => {
+    const checked = currentData.data.includes(label);
     return (
       <li key={i}>
         <input
-            type="checkbox"
-            name={option}
-            checked={obj[category][option]}
-            onChange={handleCheckboxChange}
-          />
+          type="checkbox"
+          name={label}
+          checked={checked}
+          onChange={handleChange}
+        />
         { label }
       </li>
     );
-  })
+  });
 
   return (
-    <CheckboxContainer>
+    <CheckboxContainer
+      style={{
+        ...styles
+      }}
+    >
       <h3>{ title }</h3>
       <CheckboxList>
-        { options }
-        {/* addition stuff can be rendered here by putting them into the argument and they will work just if they where in the outside. this way this can be used for whatever */}
-        { renderAdditional }
-
-        {/* select all option - clicking will make all values true */}
-        {
-          selectAllOption &&
-          <li>
-            <input
-              type='checkbox'
-              checked={selectAll}
-              onChange={handleSelectAll}
-            />
-            Select All
-          </li>
-        }
+        { optionsArray }
+        <li>
+          <input
+            type='checkbox'
+            checked={selectAll}
+            onChange={handleSelectAll}
+          />
+          Select All
+        </li>
       </CheckboxList>
     </CheckboxContainer>
   );
