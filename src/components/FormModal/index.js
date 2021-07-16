@@ -1,64 +1,65 @@
-import React, { useState } from 'react'
-import AppTextInput from '../AppTextInput'
-import FormModalGetProps from '../FormModalGetProps';
-import { v4 as uuidV4 } from 'uuid'
+import { useState } from 'react';
+import FormModalInputOptions from '../FormModalInputOptions';
+import FormModalMultipleChoiceOptions from '../FormModalMultipleChoiceOptions';
+
 import {
   Modal,
   ModalContent
 } from './styles';
 
 export default function FormModal ({ onSubmit, type }) {
-  const [options, setOptions] = useState();
-  const [formInputs, setFormInputs] = useState({});
-  const [id, setId] = useState(uuidV4());
+  const [formInput, setFormInput] = useState('');
+  const [optionsArrayInput, setOptionsArrayInput] = useState();
+  const [optionsArray, setOptionsArray] = useState([]);
 
-  const mainInputTitle = 'Enter The Title of your Input, We will use this to return the answerers to you.'
+  const mainInputTitle = 'Enter The Title of your Input, We will use this to return the answerers to you.';
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setFormInputs(prev => ({
-      ...prev,
-      [name]: value
-    }))
-  }
+  const handleTitleChange = e => {
+    const { value } = e.target;
+    setFormInput(value);
+  };
 
-  const input = () => {
-    return <>
-    <h3>
-      {mainInputTitle}
-    </h3>
-    <input
-      name={id}
-      onChange={handleChange}
-    />
-    </>
-  }
-
-  const multipleChoice = () => (
-    ''
-  );
 
   const handleCreateFormObject = () => {
     const question = {
-      title: formInputs[id]
-
-    }
+      title: formInput,
+      optionsArray
+    };
     onSubmit(question);
-  }
+  };
 
-  const display = {
-    input,
-    multipleChoice
-  }
+  const display = type => {
+    if (type === 'input') {
+      return (
+        <FormModalInputOptions
+          mainInputTitle={mainInputTitle}
+          handleTitleChange={handleTitleChange}
+        />
+      );
+    } else if (type === 'multipleChoice') {
+      return (
+        <FormModalMultipleChoiceOptions
+          optionsArrayInput={optionsArrayInput}
+          setOptionsArray={setOptionsArray}
+          setOptionsArrayInput={setOptionsArrayInput}
+          optionsArray={optionsArray}
+          mainInputTitle={mainInputTitle}
+          handleTitleChange={handleTitleChange}
+        />
+      );
+    }
+  };
 
   return (
     <Modal>
       <ModalContent>
-       { display[type]() }
+        <div>
+          { display(type) }
+        </div>
        <button onClick={handleCreateFormObject}>
          Create Input
        </button>
       </ModalContent>
     </Modal>
-  )
+  );
 }
