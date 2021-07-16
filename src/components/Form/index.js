@@ -1,22 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react';
 import { useDrop } from 'react-dnd';
-import createComponentObject from '../../functions/createComponentObject';
-import { StylesContext } from '../../StylesContext';
+import useInput from '../../hooks/useInput';
+import { Context } from '../../Context';
 import FormModal from '../FormModal';
 
 import {
   FormContainer
 } from './styles';
-// [createComponentObject({ type: 'button' })]
+
 export default function Form () {
-  const { appStyles } = useContext(StylesContext);
+  const { appStyles } = useContext(Context);
   const [inputs, setInputs] = useState([]);
   const [modal, setModal] = useState(false);
+  const createComponent = useInput();
   const [currentItem, setCurrentItem] = useState('');
   const [{ item, dropped }, drop] = useDrop(() => ({
-    // The type (or types) to accept - strings or symbols
     accept: 'BOX',
-    // Props to collect
     collect: monitor => ({
       item: monitor.getItem(),
       dropped: monitor.didDrop()
@@ -26,18 +25,31 @@ export default function Form () {
   useEffect(() => {
     if (dropped) {
       setModal(true);
-      setCurrentItem(item.name)
+      setCurrentItem(item.name);
     }
   }, [dropped, item]);
 
-  const handleSubmit = props => {
-    setInputs(prev => [...prev, createComponentObject({
+  const handleModalSubmit = props => {
+    setInputs(prev => [...prev, createComponent({
       type: currentItem,
       props,
     })]);
     setModal(false);
-    setCurrentItem('')
-  }
+    setCurrentItem('');
+  };
+
+  const showComponents = () => {
+    return (
+      inputs.map(({ Component, props, id }, key) => (
+        <Component
+          title={props.title}
+          key={key}
+          id={id}
+          optionsArray={props.optionsArray}
+        />
+      ))
+    );
+  };
 
   return (
     <FormContainer
@@ -45,16 +57,14 @@ export default function Form () {
       ref={drop}
       role={'Dustbin'}
     >
-      {
-        inputs.map(({ Render, props }, key) => <Render title={props.title} key={key} />)
-      }
+      { showComponents() }
       {
         modal &&
           <FormModal
             type={currentItem}
-            onSubmit={handleSubmit}
+            onSubmit={handleModalSubmit}
           />
       }
     </FormContainer>
-  )
+  );
 }
