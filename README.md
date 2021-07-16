@@ -19,6 +19,18 @@ Custom Hooks
 - useInput
     - This hook is used to generate a component based on the users chosen attributes. This hook also generates the snapshot in context for rendering from a user perspective. It does both using the same process.
 
+File Structure
+
+- Components hold all components in the app
+    - This is a small application that currently only has a single page. In the future a generated ID could be used to query a database for the form that matches the users creation but for now it there is no need for a pages directory.
+- Folder -> index.js - styles.js
+    - The folder is created to hold all files that strongly relate and or are dependent to that component.
+    - Such as
+        - index.js, the root of the component
+        - styles.js where the styles components are held
+        - options.js (EXAMPLE), additional files that hold objects that will be used within the applications. This was the logic can be viewed quickly and data can be viewed if needed in its own place.
+
+
 # `Tech Used`
 
 - `react-dnd: "^14.0.2"`
