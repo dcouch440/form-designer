@@ -9,6 +9,7 @@ export const ButtonGrid = styled.div`
 
 export const SelectionButton = styled.button`
   transition: 0.2s;
+  cursor: pointer;
   font-weight: 500;
   font-family: sans-serif;
   border-radius: 7px;
