@@ -12,14 +12,14 @@
 - Components are generated after a user submits its values and are read from an array head in local state. A snap shot of that data is held as formData in Context that will be the same data that is used to submit to a noSQL database.
 - After a User Creates a form a snapshot can be saved of the title names and types and can then be re rendered using the same process logic as when the form was created ( not implemented ). Because of the way that this application was created this data could be stored in a noSQL database and users would be able to create forms and then share links with people to receive replies on that data.
 
-Custom Hooks
+`Custom Hooks`
 
 - useAppStyles
     - This hook is used to reduce styles and seamlessly change them from the same function
 - useInput
     - This hook is used to generate a component based on the users chosen attributes. This hook also generates the snapshot in context for rendering from a user perspective. It does both using the same process.
 
-File Structure
+`File Structure`
 
 - Components hold all components in the app
     - This is a small application that currently only has a single page. In the future a generated ID could be used to query a database for the form that matches the users creation but for now it there is no need for a pages directory.
