@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect, useState } from 'react'
+import { useRef, useLayoutEffect, useState } from 'react';
 import StyleOptionsCurrentColors from '../StyleOptionsCurrentColors';
 import "lucid-color-picker";
 
@@ -7,15 +7,24 @@ import {
   ButtonContainer
 } from './styles';
 
-export default function StyleOptionsColorPicker ({ selectColor, appStyles }) {
+export default function StyleOptionsColorPicker ({ selectColor, appStyles, buttonValues, selectedButton }) {
   const [color, setColor] = useState("#ff0000");
   const ref = useRef();
 
-  const onColorChange = e => {
-    setColor(e.target.value);
-  }
+  const inputShouldBeLocked = () => {
+    const [selected] = buttonValues.filter(attr => attr.set === selectedButton);
+    return !selected.canSet;
+  };
 
-  const handleSelectColorFromCurrentColors = color => setColor(color)
+  const handleSetColor = () => {
+    if (inputShouldBeLocked()) {
+      return;
+    }
+    selectColor(color);
+  };
+
+  const onColorChange = e => setColor(e.target.value);
+  const handleSelectColorFromCurrentColors = color => setColor(color);
 
   useLayoutEffect(() => {
     ref.current.addEventListener("change", onColorChange);
@@ -45,10 +54,10 @@ export default function StyleOptionsColorPicker ({ selectColor, appStyles }) {
         }}
       />
       <ButtonContainer>
-        <SelectButton onClick={() => selectColor(color)}>
+        <SelectButton onClick={handleSetColor}>
           Select Color
         </SelectButton>
       </ButtonContainer>
     </>
-  )
+  );
 }

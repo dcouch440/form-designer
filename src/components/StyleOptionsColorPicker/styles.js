@@ -9,6 +9,7 @@ export const ButtonContainer = styled.div`
 
 export const SelectButton = styled.button`
   border: 2px solid black;
+  z-index: 345;
   width: 120px;
   height: 60px;
 `;
