@@ -9,8 +9,8 @@ import {
 
 export default function FormModal ({ onSubmit, type }) {
   const [formInput, setFormInput] = useState('');
-  const [optionsArrayInput, setOptionsArrayInput] = useState();
-  const [optionsArray, setOptionsArray] = useState([]);
+  const [optionsInput, setOptionsInput] = useState('');
+  const [options, setOptions] = useState([]);
 
   const mainInputTitle = 'Enter The Title of your Input, We will use this to return the answerers to you.';
 
@@ -23,31 +23,31 @@ export default function FormModal ({ onSubmit, type }) {
   const handleCreateFormObject = () => {
     const question = {
       title: formInput,
-      optionsArray
+      options
     };
     onSubmit(question);
   };
 
   const display = type => {
-    if (type === 'input') {
-      return (
+    return {
+      input: () => (
         <FormModalInputOptions
           mainInputTitle={mainInputTitle}
+          options={options}
           handleTitleChange={handleTitleChange}
         />
-      );
-    } else if (type === 'multipleChoice') {
-      return (
+      ),
+      multipleChoice: () => (
         <FormModalMultipleChoiceOptions
-          optionsArrayInput={optionsArrayInput}
-          setOptionsArray={setOptionsArray}
-          setOptionsArrayInput={setOptionsArrayInput}
-          optionsArray={optionsArray}
+          optionsInput={optionsInput}
+          setOptions={setOptions}
+          setOptionsInput={setOptionsInput}
+          options={options}
           mainInputTitle={mainInputTitle}
           handleTitleChange={handleTitleChange}
         />
-      );
-    }
+      )
+    }[type]();
   };
 
   return (
