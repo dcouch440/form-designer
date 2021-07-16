@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# `Form Designer`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### `Created By: David Couch`
+### `Created 7/12/2021`
 
-## Available Scripts
+## `About`
+- This application was created to learn Reacts drag and drop props features, advanced functional programming, and advanced shared logic through custom hooks. This is to test these concepts, not to implement every feature through third party services.
+- context is used to manage data and styles.
+- Javascript CSS is used in context for styles that will change, this way that data can be stored in a no SQL database in the same format.
+- Styled Components CSS is used for components that the user does not change.
+- Inputs Type - Input Titles - and Multiple Choice Options are stored within Context as Form Data.
+- Components are generated after a user submits its values and are read from an array head in local state. A snap shot of that data is held as formData in Context that will be the same data that is used to submit to a noSQL database.
+- After a User Creates a form a snapshot can be saved of the title names and types and can then be re rendered using the same process logic as when the form was created ( not implemented ). Because of the way that this application was created this data could be stored in a noSQL database and users would be able to create forms and then share links with people to receive replies on that data.
 
-In the project directory, you can run:
+Custom Hooks
 
-### `yarn start`
+- useAppStyles
+    - This hook is used to reduce styles and seamlessly change them from the same function
+- useInput
+    - This hook is used to generate a component based on the users chosen attributes. This hook also generates the snapshot in context for rendering from a user perspective. It does both using the same process.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# `Tech Used`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- `react-dnd: "^14.0.2"`
+- `react-dnd-html5-backend: "^14.0.0"`
+- `styled-components: "^5.3.0"`
+- `uuid: "^8.3.2"`
+- `lucid-color-picker: "^0.1.0"`
 
-### `yarn test`
+## `Preview`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img src="./public/img/form-designer-concept.png">
