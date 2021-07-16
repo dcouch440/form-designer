@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const ListItem = styled.div`
+  cursor: pointer;
+  transition: 0.2s;
   color: black;
   text-align: center;
   background-color: #00bcd4;
@@ -11,5 +13,9 @@ export const ListItem = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   box-shadow: 0 0 3px black;
   border: 2px solid black;
-  opacity: ${({isDragging})=> isDragging ? 0.5 : 1};
+  opacity: ${({ isDragging })=> isDragging ? 0.5 : 1};
+  :hover {
+    background-color: black;
+    color: white;
+  }
 `;
