@@ -3,7 +3,7 @@ import SidebarListItem from '../SidebarListItem';
 export default function SidebarListItems () {
   const listItems = [
     ['input', 'Input'],
-    ['multipleChoice', 'multipleChoice'],
+    ['multipleChoice', 'Multiple Choice'],
   ];
 
   return (
