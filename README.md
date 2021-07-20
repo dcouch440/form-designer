@@ -10,7 +10,13 @@
 - Styled Components CSS is used for components that the user does not change.
 - Inputs Type - Input Titles - and Multiple Choice Options are stored within Context as Form Data.
 - Components are generated after a user submits its values and are read from an array head in local state. A snap shot of that data is held as formData in Context that will be the same data that is used to submit to a noSQL database.
-- After a User Creates a form a snapshot can be saved of the title names and types and can then be re rendered using the same process logic as when the form was created ( not implemented ). Because of the way that this application was created this data could be stored in a noSQL database and users would be able to create forms and then share links with people to receive replies on that data.
+- After a User Creates a form, a snapshot can be saved of the title names and types and can then be re rendered using the same process logic as when the form was created. Because of the way that this application was created this data could be stored in a noSQL database and users would be able to create forms and then share links with people to receive replies on that data.
+- The data structure is shown in JSON form to display what it would look like if stored.
+- When a user hits generate the app finds the type of input through the object, matches it with the corresponding input and then generates it with the data while simultaneously adding it to the context.
+- It is clear that having Hovered functionality for some of these options is out of the ordinary. This app was designed this way to explore functionality and possibility.
+- Some functionality is represented through visual appearance only due to the lack of noSQL database.
+    - turning object into JSON and back
+        - There is no reason to clear context, change it to JSON and then back again because components are not stored in SQL or Context, they are created locally in the same linear way that a user does when they are creating the form.
 
 `Custom Hooks`
 
@@ -22,7 +28,6 @@
 `File Structure`
 
 - Components hold all components in the app
-    - This is a small application that currently only has a single page. In the future a generated ID could be used to query a database for the form that matches the users creation but for now it there is no need for a pages directory.
 - Folder -> index.js - styles.js
     - The folder is created to hold all files that strongly relate and or are dependent to that component.
     - Such as
