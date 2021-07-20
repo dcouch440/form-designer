@@ -3,12 +3,16 @@ import { useDrop } from 'react-dnd';
 import useInput from '../../hooks/useInput';
 import { Context } from '../../Context';
 import FormModal from '../FormModal';
+import AppButton from '../AppButton';
+import { v4 as uuidv4 } from 'uuid';
+import { useHistory } from 'react-router-dom';
 
 import {
   FormContainer
 } from './styles';
 
 export default function Form () {
+  const history = useHistory();
   const { appStyles } = useContext(Context);
   const [inputs, setInputs] = useState([]);
   const [modal, setModal] = useState(false);
@@ -48,6 +52,10 @@ export default function Form () {
       />
     ));
 
+  const handleShowSnapshot = () => {
+    history.push(`/show-form`);
+  };
+
   return (
     <FormContainer
       backgroundColor={appStyles.page.nonHovered.backgroundColor}
@@ -62,6 +70,10 @@ export default function Form () {
             onSubmit={handleModalSubmit}
           />
       }
+      <AppButton
+        text='Save Form'
+        onClick={handleShowSnapshot}
+      />
     </FormContainer>
   );
 }
