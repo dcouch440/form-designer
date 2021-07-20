@@ -1,61 +1,14 @@
 import PropTypes from 'prop-types';
 import { createContext, useState } from 'react';
+import defaultStyles from '../data/defaultStyles';
 
 const Context = createContext();
 
 function ContextProvider (props) {
-  const defaultStyles = {
-    borderWidth: '2px',
-    borderStyle: 'solid',
-    borderColor: '#000000',
-    backgroundColor: '#FFFFFF',
-    borderRadius: '7px',
-    color: '#000000',
-  };
-  const [appStyles, setAppStyles] = useState({
-    button: {
-      nonHovered: {
-        ...defaultStyles,
-        transition: '0.2s',
-        cursor: 'pointer',
-        width: '150px',
-        borderRadius: '7px',
-        backgroundColor: '#000000',
-        padding: '30px',
-      },
-      hovered: {
-        backgroundColor: '#000000',
-        color: '#FFFFFF'
-      }
-    },
-    multipleChoice: {
-      nonHovered: {
-      },
-      hovered: {
-        color: '#000000'
-      }
-    },
-    page: {
-      nonHovered: {
-        backgroundColor: '#FFFFFF'
-      },
-      hovered: {
-      },
-    },
-    input: {
-      nonHovered: {
-        ...defaultStyles,
-        padding: '5px',
-        borderRadius: '5px',
-        width: '250px',
-        height: '30px',
-      },
-      hovered: {
-      }
-    },
-  });
-
   const [formData, setFormData] = useState({});
+  const [appStyles, setAppStyles] = useState({
+    ...defaultStyles
+  });
 
   const handleUpdateFormData = ({ name, value }) => {
     setFormData(prev => ({
@@ -76,6 +29,7 @@ function ContextProvider (props) {
     </Context.Provider>
   );
 }
+
 
 ContextProvider.propTypes = {
   children: PropTypes.any
